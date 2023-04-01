@@ -9,9 +9,10 @@ document.body.appendChild(renderer.domElement);
 var scene = new THREE.Scene();
 
 var camera = new THREE.PerspectiveCamera(80, WIDTH / HEIGHT);
-camera.position.z = 4.5;
-camera.position.x = -1.2;
-camera.position.y = 2;
+
+camera.position.z = 3;
+camera.position.x = 0;
+camera.position.y = 0;
 
 camera.rotation.set(0, -0.5, 0);
 scene.add(camera);
@@ -19,9 +20,15 @@ scene.add(camera);
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 r = 1;
 h = 3;
+
+mh = (0.0112*h*h)+(1.8473*h)+0.6842;
+
+console.log(mh)
+
 var geometry = new THREE.ConeGeometry( r, h, 12 );
 material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
 cone = new THREE.Mesh(geometry, material);
+r = r/r;
 
 cone.rotateX(90 * (Math.PI/180));
 cone.translateY(h/3);
@@ -29,8 +36,8 @@ cone.translateY(h/3);
 cone.translateY(-h/3);
 cone.rotateX(-90 * (Math.PI/180));
 
-cone.translateY(h/6.4);
-cone.translateX(r *( r + ((r*3)/4)));
+cone.translateY(h/mh);
+cone.translateX(1.75);
 cone.rotateZ(-90 * (Math.PI/180));
 cone.rotateZ(-Math.atan(r/h));
 
